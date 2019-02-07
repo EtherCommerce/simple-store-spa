@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Product } from '../catalog.models';
@@ -9,13 +9,12 @@ import { CatalogApiService } from '../catalog-api.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-  items$: Observable<Product[]>;
+export class ProductListComponent {
+  displayedColumns: string[] = ['sku', 'title', 'description', 'cost', 'price'];
+  dataSource$: Observable<Product[]>;
 
-  constructor(private _api: CatalogApiService) { }
-
-  ngOnInit() {
-    this.items$ = this._api.getProductList();
+  constructor(api: CatalogApiService) {
+    this.dataSource$ = api.getProductList();
   }
 
 }
