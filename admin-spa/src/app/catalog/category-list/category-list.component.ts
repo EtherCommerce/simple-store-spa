@@ -35,7 +35,7 @@ export class CategoryListComponent {
     dialogRef.afterClosed().subscribe(
         val => {
           if (val) {
-            // this._api.createCategory(val);
+            this._api.updateCategory(val._id, val);
           }
         }
     );

@@ -34,7 +34,7 @@ export class ProductListComponent {
     dialogRef.afterClosed().subscribe(
         val => {
           if (val) {
-            // this._api.createProduct(val);
+            this._api.updateProduct(val._id, val).subscribe(result => console.log(result));
           }
         }
     );
