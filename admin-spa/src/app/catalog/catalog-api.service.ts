@@ -21,6 +21,10 @@ export class CatalogApiService {
   public getCategoryList = (): Observable<Category[]> =>
     this._http.get<Category[]>(`${this._apiUrl}/categories`)
 
+  public createCategory = (item: Category): Observable<Category> =>
+    this._http.post<Category>(`${this._apiUrl}/categories`, item)
+
+
   public getProductList = (): Observable<Product[]> =>
     this._http.get<Product[]>(`${this._apiUrl}/products`)
 
