@@ -7,6 +7,7 @@ import { CatalogComponent } from './catalog.component';
 import { CatalogRoutingModule, routedComponents } from './catalog.routing';
 import { CatalogApiService } from './catalog-api.service';
 import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
   declarations: [
     CatalogComponent,
     ...routedComponents,
-    CategoryDialogComponent
+    CategoryDialogComponent,
+    ProductDialogComponent
   ],
   entryComponents: [
-    CategoryDialogComponent
+    CategoryDialogComponent,
+    ProductDialogComponent
   ],
   providers: [
     CatalogApiService
