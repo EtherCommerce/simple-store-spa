@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Product } from './catalog.models';
+import { Category, Product } from './catalog.models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,9 @@ export class CatalogApiService {
     this._apiUrl = apiBaseUrl;
   }
 
+
+  public getCategoryList = (): Observable<Category[]> =>
+    this._http.get<Category[]>(`${this._apiUrl}/categories`)
 
   public getProductList = (): Observable<Product[]> =>
     this._http.get<Product[]>(`${this._apiUrl}/products`)
