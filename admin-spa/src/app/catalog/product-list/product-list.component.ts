@@ -22,6 +22,25 @@ export class ProductListComponent {
     this.dataSource$ = _api.getProductList();
   }
 
+  create() {
+    const product = new Product();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = product;
+    dialogConfig.minWidth = '50%';
+
+    const dialogRef = this._dialog.open(ProductDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      val => {
+        if (val) {
+          this._api.createProduct(val).subscribe(result => console.log(result));
+        }
+      }
+    );
+  }
+
   edit(product: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -32,11 +51,11 @@ export class ProductListComponent {
     const dialogRef = this._dialog.open(ProductDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-        val => {
-          if (val) {
-            this._api.updateProduct(val._id, val).subscribe(result => console.log(result));
-          }
+      val => {
+        if (val) {
+          this._api.updateProduct(val._id, val).subscribe(result => console.log(result));
         }
+      }
     );
   }
 
