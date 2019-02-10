@@ -9,7 +9,7 @@ const apiProductsRouter = require('./routes/products');
 const apiCategoriesRouter = require('./routes/categories');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/slippers-store', { promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://localhost/slippers-store', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() => console.log('connection successful'))
   .catch((err) => console.error(err));
 
