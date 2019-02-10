@@ -8,7 +8,7 @@ export class Category {
   name: string;
   description: string;
   thumbnailImageUrl: string;
-  meta: Meta;
+  meta: Meta = { title: '', description: '' };
   createdDate: Date;
   updatedDate: Date;
   isDeleted: boolean;

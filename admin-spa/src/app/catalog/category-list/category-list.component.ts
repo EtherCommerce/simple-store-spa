@@ -23,6 +23,25 @@ export class CategoryListComponent {
     this.dataSource$ = _api.getCategoryList();
   }
 
+  create() {
+    const category = new Category();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = category;
+    dialogConfig.minWidth = '50%';
+
+    const dialogRef = this._dialog.open(CategoryDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      val => {
+        if (val) {
+          this._api.createCategory(val).subscribe(result => console.log(result));
+        }
+      }
+    );
+  }
+
   edit(category: Category) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -35,7 +54,7 @@ export class CategoryListComponent {
     dialogRef.afterClosed().subscribe(
         val => {
           if (val) {
-            this._api.updateCategory(val._id, val);
+            this._api.updateCategory(val._id, val).subscribe(result => console.log(result));
           }
         }
     );
