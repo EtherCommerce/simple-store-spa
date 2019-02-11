@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-var shortid = require('shortid');
+//var shortid = require('shortid');
 
 var CategorySchema = new mongoose.Schema({
-  _id: { type: String, default: shortid.generate },
+  //_id: { type: String, default: shortid.generate },
   name: String,
   description: String,
   thumbnailImageUrl: String,
