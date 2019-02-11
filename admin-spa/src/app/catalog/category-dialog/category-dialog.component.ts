@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-import { Category } from '../catalog.models';
+import { Category, Meta } from '../catalog.models';
 
 @Component({
   selector: 'category-dialog',
-  templateUrl: './category-dialog.component.html',
-  styleUrls: ['./category-dialog.component.css']
+  templateUrl: 'category-dialog.component.html',
+  styleUrls: ['category-dialog.component.css']
 })
 export class CategoryDialogComponent {
   form: FormGroup;
@@ -29,11 +29,28 @@ export class CategoryDialogComponent {
     });
   }
 
+
   save() {
-    this.dialogRef.close(this.form.value);
+    const value = this.getValueFromForm();
+    this.dialogRef.close(value);
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+
+  private getValueFromForm(): Category {
+    const f = this.form.value;
+    return {
+      _id: f._id,
+      name: f.name,
+      description: f.description,
+      thumbnailImageUrl: f.thumbnailImageUrl,
+      meta: {
+        title: f.metaTitle,
+        description: f.metaDescription
+      } as Meta
+    } as Category;
   }
 }
