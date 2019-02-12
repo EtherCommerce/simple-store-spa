@@ -13,7 +13,7 @@ import { CategoryDialogComponent } from '../category-dialog/category-dialog.comp
 })
 export class CategoryListComponent {
 
-  displayedColumns: string[] = ['_id', 'name', 'description'];
+  displayedColumns: string[] = ['_id', 'name', 'description', 'buttons'];
   dataSource$: Observable<Category[]>;
 
   constructor(
@@ -58,6 +58,12 @@ export class CategoryListComponent {
           }
         }
     );
+  }
+
+  delete(category: Category) {
+    if (!category) { return; }
+    if (!confirm(`Удалить ${category.name}?`)) { return; }
+    this._api.deleteCategory(category._id).subscribe(result => console.log(result));
   }
 
 }
