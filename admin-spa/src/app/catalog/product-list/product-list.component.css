@@ -18,3 +18,9 @@ table tr:hover{
 .fill-space {
   flex: 1 1 auto;
 }
+
+.mat-column-buttons {
+  flex: 0 0 100px !important;
+  white-space: unset !important;
+  justify-content: flex-end;
+}

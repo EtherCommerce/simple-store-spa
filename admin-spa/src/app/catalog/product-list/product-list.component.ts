@@ -12,7 +12,7 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  displayedColumns: string[] = ['sku', 'title', 'description', 'cost', 'price'];
+  displayedColumns: string[] = ['sku', 'title', 'description', 'cost', 'price', 'buttons'];
   dataSource$: Observable<Product[]>;
 
   constructor(
@@ -57,6 +57,12 @@ export class ProductListComponent {
         }
       }
     );
+  }
+
+  delete(product: Product) {
+    if (!product) { return; }
+    if (!confirm(`Удалить ${product.title}?`)) { return; }
+    this._api.deleteProduct(product._id).subscribe(result => console.log(result));
   }
 
 }
