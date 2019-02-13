@@ -5,8 +5,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors')
 
-const apiProductsRouter = require('./routes/products');
 const apiCategoriesRouter = require('./routes/categories');
+const apiProductsRouter = require('./routes/products');
+const apiFeedbacksRouter = require('./routes/feedbacks');
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ether-store', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
@@ -23,8 +24,10 @@ app.use(cors({
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/v1/products', apiProductsRouter);
+
 app.use('/api/v1/categories', apiCategoriesRouter);
+app.use('/api/v1/products', apiProductsRouter);
+app.use('/api/v1/feedbacks', apiFeedbacksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
