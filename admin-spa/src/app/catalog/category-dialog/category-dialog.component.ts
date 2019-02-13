@@ -5,7 +5,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Category, Meta } from '../catalog.models';
 
 @Component({
-  selector: 'category-dialog',
+  selector: 'app-category-dialog',
   templateUrl: 'category-dialog.component.html',
   styleUrls: ['category-dialog.component.css']
 })

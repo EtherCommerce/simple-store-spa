@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { FeedbackListComponent } from './feedback-list/feedback-list.component';
+
+import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { FeedbackDialogComponent } from './feedback-dialog/feedback-dialog.component';
 
 const routes: Routes = [
   {
@@ -34,6 +39,16 @@ const routes: Routes = [
             data: { title: 'Category list' }
           }
         ]
+      },
+      {
+        path: 'feedbacks',
+        children: [
+          {
+            path: '',
+            component: FeedbackListComponent,
+            data: { title: 'Feedback list' }
+          }
+        ]
       }
     ]
   }
@@ -48,5 +63,12 @@ export class CatalogRoutingModule { }
 
 export const routedComponents = [
   ProductListComponent,
-  CategoryListComponent
+  CategoryListComponent,
+  FeedbackListComponent
+];
+
+export const entryComponents = [
+  CategoryDialogComponent,
+  ProductDialogComponent,
+  FeedbackDialogComponent
 ];

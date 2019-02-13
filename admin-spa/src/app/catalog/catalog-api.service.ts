@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Category, Product } from './catalog.models';
+import { Category, Product, Feedback } from './catalog.models';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +48,18 @@ export class CatalogApiService {
 
   public removeProduct = (id: string): Observable<Product> =>
     this._http.delete<Product>(`${this._apiUrl}/products/${id}/rem`)
+
+
+  public getFeedbackList = (): Observable<Feedback[]> =>
+    this._http.get<Feedback[]>(`${this._apiUrl}/feedbacks`)
+
+  public createFeedback = (item: Category): Observable<Feedback> =>
+    this._http.post<Feedback>(`${this._apiUrl}/feedbacks`, item)
+
+  public updateFeedback = (id: string, item: Category): Observable<Feedback> =>
+    this._http.put<Feedback>(`${this._apiUrl}/feedbacks/${id}`, item)
+
+  public removeFeedback = (id: string): Observable<Feedback> =>
+    this._http.delete<Feedback>(`${this._apiUrl}/feedbacks/${id}/rem`)
 
 }

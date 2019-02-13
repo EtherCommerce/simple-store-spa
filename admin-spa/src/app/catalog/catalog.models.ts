@@ -29,3 +29,11 @@ export class Product {
   updatedDate: Date;
   isDeleted: boolean;
 }
+
+export class Feedback {
+  _id: string;
+  author: { name: string, email: string };
+  content: string;
+  rate: number;
+  createdDate: Date;
+}
