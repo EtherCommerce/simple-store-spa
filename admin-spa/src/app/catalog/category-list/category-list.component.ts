@@ -20,7 +20,7 @@ export class CategoryListComponent {
     private _api: CatalogApiService,
     private _dialog: MatDialog
   ) {
-    this.dataSource$ = _api.getCategoryList();
+    this.init();
   }
 
   create() {
@@ -36,7 +36,7 @@ export class CategoryListComponent {
     dialogRef.afterClosed().subscribe(
       val => {
         if (val) {
-          this._api.createCategory(val).subscribe(result => console.log(result));
+          this._api.createCategory(val).subscribe(_ => this.init());
         }
       }
     );
@@ -54,7 +54,7 @@ export class CategoryListComponent {
     dialogRef.afterClosed().subscribe(
         val => {
           if (val) {
-            this._api.updateCategory(val._id, val).subscribe(result => console.log(result));
+            this._api.updateCategory(val._id, val).subscribe(_ => this.init());
           }
         }
     );
@@ -63,7 +63,10 @@ export class CategoryListComponent {
   delete(category: Category) {
     if (!category) { return; }
     if (!confirm(`Удалить ${category.name}?`)) { return; }
-    this._api.deleteCategory(category._id).subscribe(result => console.log(result));
+    this._api.deleteCategory(category._id).subscribe(result => this.init());
   }
+
+
+  private init = () => this.dataSource$ = this._api.getCategoryList();
 
 }

@@ -19,7 +19,7 @@ export class ProductListComponent {
     private _api: CatalogApiService,
     private _dialog: MatDialog
   ) {
-    this.dataSource$ = _api.getProductList();
+    this.init();
   }
 
   create() {
@@ -35,7 +35,7 @@ export class ProductListComponent {
     dialogRef.afterClosed().subscribe(
       val => {
         if (val) {
-          this._api.createProduct(val).subscribe(result => console.log(result));
+          this._api.createProduct(val).subscribe(_ => this.init());
         }
       }
     );
@@ -53,7 +53,7 @@ export class ProductListComponent {
     dialogRef.afterClosed().subscribe(
       val => {
         if (val) {
-          this._api.updateProduct(val._id, val).subscribe(result => console.log(result));
+          this._api.updateProduct(val._id, val).subscribe(_ => this.init());
         }
       }
     );
@@ -62,7 +62,9 @@ export class ProductListComponent {
   delete(product: Product) {
     if (!product) { return; }
     if (!confirm(`Удалить ${product.title}?`)) { return; }
-    this._api.deleteProduct(product._id).subscribe(result => console.log(result));
+    this._api.deleteProduct(product._id).subscribe(_ => this.init());
   }
 
+
+  private init = () => this.dataSource$ = this._api.getProductList();
 }

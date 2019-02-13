@@ -30,6 +30,9 @@ export class CatalogApiService {
   public deleteCategory = (id: string): Observable<Category> =>
     this._http.delete<Category>(`${this._apiUrl}/categories/${id}`)
 
+  public removeCategory = (id: string): Observable<Category> =>
+    this._http.delete<Category>(`${this._apiUrl}/categories/${id}/rem`)
+
 
   public getProductList = (): Observable<Product[]> =>
     this._http.get<Product[]>(`${this._apiUrl}/products`)
@@ -42,5 +45,8 @@ export class CatalogApiService {
 
   public deleteProduct = (id: string): Observable<Product> =>
     this._http.delete<Product>(`${this._apiUrl}/products/${id}`)
+
+  public removeProduct = (id: string): Observable<Product> =>
+    this._http.delete<Product>(`${this._apiUrl}/products/${id}/rem`)
 
 }
