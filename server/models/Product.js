@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-//var shortid = require('shortid');
+const mongoose = require('mongoose');
+//const  shortid = require('shortid');
 
-var ProductSchema = new mongoose.Schema({
-  //_id: { type: String, default: shortid.generate },
+const ProductSchema = new mongoose.Schema({
+  //_id: { type: String, unique: true, default: shortid.generate },
   sku: String,
   title: String,
   description: String,
@@ -14,7 +14,7 @@ var ProductSchema = new mongoose.Schema({
   imageUrls: [{ type: String }],
   createdDate: { type: Date, default: Date.now },
   updatedDate: { type: Date, default: Date.now },
-  isDeleted: Boolean
+  isDeleted: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

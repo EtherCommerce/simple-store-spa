@@ -5,41 +5,49 @@ var Product = require('../models/Product.js');
 
 /* GET ALL */
 router.get('', function(req, res, next) {
-  Product.find(function (err, items) {
+  Product.find(function (err, docs) {
     if (err) return next(err);
-    res.json(items);
+    res.json(docs);
   });
 });
 
 /* GET SINGLE BY ID */
 router.get('/:id', function(req, res, next) {
-  Product.findById(req.params.id, function (err, item) {
+  Product.findById(req.params.id, function (err, doc) {
     if (err) return next(err);
-    res.json(item);
+    res.json(doc);
   });
 });
 
 /* SAVE */
 router.post('', function(req, res, next) {
-  Product.create(req.body, function (err, item) {
+  Product.create(req.body, function (err, doc) {
     if (err) return next(err);
-    res.json(item);
+    res.json(doc);
   });
 });
 
 /* UPDATE */
 router.put('/:id', function(req, res, next) {
-  Product.findByIdAndUpdate(req.params.id, req.body, function (err, item) {
+  Product.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, doc) {
     if (err) return next(err);
-    res.json(item);
+    res.json(doc);
   });
 });
 
-/* DELETE */
+/* MARK DELETED */
 router.delete('/:id', function(req, res, next) {
-  Product.findByIdAndRemove(req.params.id, req.body, function (err, item) {
+  Product.findByIdAndUpdate(req.params.id, { isDeleted: true }, { new: true }, function (err, doc) {
     if (err) return next(err);
-    res.json(item);
+    res.json(doc);
+  });
+});
+
+/* REMOVE */
+router.delete('/:id/rem', function(req, res, next) {
+  Product.findByIdAndRemove(req.params.id, function (err, doc) {
+    if (err) return next(err);
+    res.json(doc);
   });
 });
 
