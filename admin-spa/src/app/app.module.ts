@@ -9,7 +9,7 @@ import localeRu from '@angular/common/locales/ru';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { SharedModule } from './shared';
-import { MaterialModule } from './material';
+import { MaterialModule } from './_modules/material';
 import { CatalogModule } from './catalog/catalog.module';
 
 registerLocaleData(localeRu);
